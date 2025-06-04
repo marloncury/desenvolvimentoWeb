@@ -1,87 +1,39 @@
-function mudarFundo(){
-    const valor = parseInt(Math.random() * 10)      
-    if(valor % 3 == 0){
-        document.bgColor = 'lightgreen'
-    }
-    else{
-        document.bgColor = 'lightgray'
-    }
-}
-
-function trocar(){
-    const par = document.getElementById('texto')
-    par.innerHTML = 'Modificando o texto'
-}
-
-function resetar(){
-    window.location.reload()
-    // ou  somente location.reload()
-}
-
-function carregar(){
-    const bt = document.getElementById("reset")
-    //bt.bgColor = 'lightcoral'
-    // nao existe no html o atributo pra buttom, tem q usar o css
-    bt.style.backgroundColor = 'lightcoral'
-}
-
-function carregarImagem(){
-    const img = document.getElementById('imagem')
-    img.src = 'imagens/arquitetura.png'
-}
-
-function desaparecerImagem(){
-    const img = document.getElementById('imagem')
-    img.src = ''
-}
-
-function ver(){
-    const info = document.getElementById('este')
-    info.style.display = 'contents'
-}
-
-function desaparecerTexto(){
-    const desaparecer = document.getElementById('este')
-    desaparecer.style.display = 'none'
-}
-
-function tabelar(){
-    const tab = document.getElementById('tabela')
-    tab.border = "5"
-    tab.bgColor = "goldenrod"
-    tab.width = "70%"
-}
+var estoque = [];
 
 
-function destacar(){
-    const campo = document.querySelector("input[type='text']")
-    campo.style.backgroundColor = 'bisque'
-}
 
-function limpar(){
-    const campo = document.querySelector("input[type='text']")
-    campo.style.backgroundColor = ''
-}
+$(()=>{
 
-function estiloTabela(){
-    var tab = document.getElementById('tabela')
-    tab.className = 'table' // muda parametro class da tabela (nao soma classes)
-}
+    let conteudo = {};
 
+    $.getJSON('meuJson.json', function(data){
+        conteudo = data
+    })
 
-function voltarTabela(){
-    var tab = document.getElementById('tabela')
-    tab.classList.remove('table') // remove classe 
-    tab.classList.add('table2') // adiciona classes 
-}
+    $('#btCarregar').click(function(){
+        $.getJSON('meuJson.json',function(data){
+            $('#area').text(JSON.stringify(data))
+        })
+    });
 
-function manipular(){
-    const lista = document.getElementById('lista')
+    $('#btInserir').click(function(){
 
-    const novoItem = document.createElement('li')
-    const novoTexto = document.createTextNode('consegui!!')
+        let codigo = $('#vCodigo').val();
+        let nome = $('#vNome').val();
+        let valor = $('#vValor').val();
 
-    novoItem.appendChild(novoTexto)
+        produto = { codigo, nome, valor}
+        estoque.push(produto);
 
-    lista.appendChild(novoItem)
-}
+        $('#area').text(JSON.stringify(estoque))
+    });
+
+    $('#btConsultar').click(function(){
+        let resultado = ""
+        conteudo.produtos.forEach(produto => {
+            resultado += `<p> $(produtos.nome) : $(produtos.preco) </p>`       
+        });
+
+        $('#area').html(resultado)
+    })
+})

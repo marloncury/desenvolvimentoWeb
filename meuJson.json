@@ -1,0 +1,28 @@
+{
+    "id": "LJ100",
+    "nome " : "Filial Shopping Real ",
+    "tipo" : "eletronicos",
+    "endereco" :{
+        "logradouro": "",
+        "cidade": "",
+        "telefone":"",
+        "email" :""
+    },
+    "produtos": [
+        {
+            "codigo":"PROD010",
+            "nome":"Smartphone Samsung PRO",
+            "preco": "3500"
+        },
+        {
+            "codigo":"PROD020",
+            "nome":"Computador Dell XP",
+            "preco": "5600"
+        },
+        {
+            "codigo":"PROD030",
+            "nome":"Caixa de som XingLing",
+            "preco": "250"
+        }
+    ]
+}
