@@ -1,11 +1,19 @@
 <?php
-    $servidor = 'localhost';
-    $nomeBanco ='livraria2';
-    $user = 'root';
-    $senha = '';
 
+class Conexao
+{
+      private $servidor_mysql = 'localhost';
+      private $nome_banco = 'lojaweb2';
+      private $usuario = 'root';
+      private $senha = ''; 
+      private $con;
 
-    $con = new PDO("mysql:host=$servidor;dbname=$nomeBanco", "$user","$senha");
-    
+      public function getConexao()
+      {
+            $this->con = new PDO("mysql:host=$this->servidor_mysql;dbname=$this->nome_banco","$this->usuario","$this->senha");
+            return $this->con;
+      }
+}
 
 ?>
+
